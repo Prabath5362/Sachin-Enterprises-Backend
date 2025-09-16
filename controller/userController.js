@@ -66,3 +66,28 @@ export async function loginUser(req, res) {
         });
     }
 }
+
+
+export function isAdmin(req){
+    if(req.user.role == "admin"){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+export function isUser(req){
+    if(req.user.role == "customer"){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+export function isUserNull(req){
+    if(req.user  == null){
+        return true;
+    }else{
+        return false;
+    }
+}
