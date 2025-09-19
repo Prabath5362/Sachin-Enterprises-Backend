@@ -55,7 +55,7 @@ export async function getProducts(req, res) {
 
     } catch (e) {
         res.status(500).json({
-            message: "Product couldn't fetch"
+            message: "Product couldn't fetch" + e.message
         });
     }
 }
