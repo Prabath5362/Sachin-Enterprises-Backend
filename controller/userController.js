@@ -51,7 +51,8 @@ export async function loginUser(req, res) {
             const token = jwt.sign(tokenData, process.env.SACHIN_JWT);
             res.json({
                 message: "Login success",
-                token: token
+                token: token,
+                role: user.role
             });
         }else{
             res.json({

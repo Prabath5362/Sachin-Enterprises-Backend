@@ -5,8 +5,10 @@ import bodyParser from "body-parser"
 import userRouter from "./routes/userRoute.js"
 import productRouter from "./routes/productRoute.js"
 import jwt from "jsonwebtoken"
+import cors from "cors"
 
 const app = express()
+app.use(cors())
 app.use(bodyParser.json())
 
 dotenv.config()
