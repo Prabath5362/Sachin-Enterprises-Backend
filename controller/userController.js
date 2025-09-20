@@ -63,7 +63,7 @@ export async function loginUser(req, res) {
 
     } catch (e) {
         res.status(500).json({
-            message: "Login error "+ e.message,
+            message: "Login error: "+ e.message,
         });
     }
 }
