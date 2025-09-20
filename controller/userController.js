@@ -57,7 +57,6 @@ export async function loginUser(req, res) {
         }else{
             res.status(400).json({
                 message: "Password not match",
-                token: token
             });
         }
 
