@@ -55,7 +55,7 @@ export async function loginUser(req, res) {
                 role: user.role
             });
         }else{
-            res.json({
+            res.status(400).json({
                 message: "Password not match",
                 token: token
             });
@@ -63,7 +63,7 @@ export async function loginUser(req, res) {
 
     } catch (e) {
         res.status(500).json({
-            message: "Login error: " + e.message,
+            message: "Login error "+ e.message,
         });
     }
 }
