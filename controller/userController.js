@@ -85,7 +85,7 @@ export function getUserDetails(req, res) {
         const user = req.user;
         if(user == null){
             res.status(401).json({
-                message: "User details not found",
+                message: "User details not found.",
             })
         }
           
