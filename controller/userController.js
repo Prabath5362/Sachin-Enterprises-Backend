@@ -12,9 +12,22 @@ export async function registerUser(req, res) {
         userData.password = bcrypt.hashSync(userData.password, 10);
         const user = new User(userData);
 
+        const token = jwt.sign(
+            {
+                email: user.email,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                profilePic: user.profilePic,
+                contact: user.contact,
+                role: user.role
+            },
+            process.env.SACHIN_JWT
+        );
         await user.save();
         res.json({
-            message: "Registration success"
+            message: "Registration success",
+            token: token,
+            role: user.role
         });
     } catch (e) {
         res.json({
@@ -63,6 +76,23 @@ export async function loginUser(req, res) {
     } catch (e) {
         res.status(500).json({
             message: "Login error: "+ e.message,
+        });
+    }
+}
+
+export function getUserDetails(req, res) {
+    try {
+        const user = req.user;
+        if(user == null){
+            res.status(401).json({
+                message: "User details not found",
+            })
+        }
+          
+        res.json(user);
+    }catch (e) {
+        res.status(500).json({
+            message: "Error fetching user details: " + e.message,
         });
     }
 }
