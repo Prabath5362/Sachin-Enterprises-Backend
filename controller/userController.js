@@ -94,7 +94,7 @@ export function getUserDetails(req, res) {
     res.json(user);
   } catch (e) {
     res.status(500).json({
-      message: "Error fetching user details: " + e.message,
+      message: "Error fetch user details: " + e.message,
     });
   }
 }
