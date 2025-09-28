@@ -99,36 +99,36 @@ export function getUserDetails(req, res) {
   }
 }
 
-export async function updateUser(req, res) {
-  try {
-    if (isUserNull(req)) {
-    res.status(401).json({
-      message: "You are not authorized to perform this task",
-    });
-    return;
-  }
+// export async function updateUser(req, res) {
+//   try {
+//     if (isUserNull(req)) {
+//     res.status(401).json({
+//       message: "You are not authorized to perform this task",
+//     });
+//     return;
+//   }
 
-  if (isUser(req)) {
-    const updateData = req.body;
-    if (updateData.password != null) {
-      updateData.password = bcrypt.hashSync(updateData.password, 10);
-    }
+//   if (isUser(req)) {
+//     const updateData = req.body;
+//     if (updateData.password != null) {
+//       updateData.password = bcrypt.hashSync(updateData.password, 10);
+//     }
     
-    updateData.role = "customer";
-    const updateID = req.params.email;
-    await User.updateOne(
-      {
-        email: updateID,
-      },
-        updateData
-    )
-  }
-  }catch(e){
-    res.status(500).json({
-      message: "User updating failed"
-    })
-  }
-}
+//     updateData.role = "customer";
+//     const updateID = req.params.email;
+//     await User.updateOne(
+//       {
+//         email: updateID,
+//       },
+//         updateData
+//     )
+//   }
+//   }catch(e){
+//     res.status(500).json({
+//       message: "User updating failed"
+//     })
+//   }
+// }
 
 export function isAdmin(req) {
   if (req.user.role == "admin") {
